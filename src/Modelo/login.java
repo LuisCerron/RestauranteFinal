@@ -1,6 +1,6 @@
 
 package Modelo;
-
+//comentario
 public class login {
     private int id;
     private String nombre;
