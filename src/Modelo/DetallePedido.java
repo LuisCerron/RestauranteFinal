@@ -10,7 +10,7 @@ public class DetallePedido {
 
     public DetallePedido() {
     }
-
+    /*Constructor de DetallePedido */
     public DetallePedido(int id, String nombre, double precio, int cantidad, String comentario, int id_pedido) {
         this.id = id;
         this.nombre = nombre;
