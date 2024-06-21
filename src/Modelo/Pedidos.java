@@ -9,7 +9,9 @@ public class Pedidos {
     private String sala;
     private String usuario;
     private String estado;
-
+    
+    
+    /*Constructor vacio*/
     public Pedidos() {
     }
 
