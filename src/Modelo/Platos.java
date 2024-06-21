@@ -9,6 +9,7 @@ public class Platos {
     public Platos() {
     }
 
+    /*Este es el constructor*/
     public Platos(int id, String nombre, double precio, String fecha) {
         this.id = id;
         this.nombre = nombre;
