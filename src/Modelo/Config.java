@@ -12,8 +12,10 @@ public class Config {
     public Config(){
         
     }
-
-    public Config(int id, String ruc, String nombre, String telefono, String direccion, String mensaje) {
+    
+      
+     //Este es el metodo constructor
+     public Config(int id, String ruc, String nombre, String telefono, String direccion, String mensaje) {
         this.id = id;
         this.ruc = ruc;
         this.nombre = nombre;
