@@ -13,6 +13,7 @@ public class Pedidos {
     public Pedidos() {
     }
 
+    /*Constructor con parametros*/
     public Pedidos(int id, int id_sala, int num_mesa, String fecha, double total, String sala, String usuario, String estado) {
         this.id = id;
         this.id_sala = id_sala;
