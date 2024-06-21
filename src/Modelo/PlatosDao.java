@@ -35,7 +35,7 @@ public class PlatosDao {
             }
         }
     }
-
+    // metodo para lista los platos
     public List Listar(String valor, String fecha) {
         List<Platos> Lista = new ArrayList();
         String sql = "SELECT * FROM platos WHERE fecha = ?";
