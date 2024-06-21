@@ -18,7 +18,7 @@ public class login {
         this.pass = pass;
         this.rol = rol;
     }
-
+//fgguhiuygsgfiybs
 
     public int getId() {
         return id;
