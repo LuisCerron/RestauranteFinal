@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 public class Conexion {
 
+    
+    // Git hola
     Connection con;
     /*Codigo para la conexion para la base de datos */
     public Connection getConnection(){
