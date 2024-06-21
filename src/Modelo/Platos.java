@@ -1,5 +1,5 @@
 package Modelo;
-
+//Clase plato con sus respectivos atributos
 public class Platos {
     private int id;
     private String nombre;
