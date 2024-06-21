@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
-
+// Estas son las importaciones
 import Modelo.Config;
 import Modelo.DetallePedido;
 import Modelo.Eventos;
@@ -288,7 +288,8 @@ public final class Sistema extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setBackground(new java.awt.Color(153, 255, 153));
+        jButton1.setText("Informes");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
