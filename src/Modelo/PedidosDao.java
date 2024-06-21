@@ -186,7 +186,7 @@ public class PedidosDao {
             Document doc = new Document();
             PdfWriter.getInstance(doc, archivo);
             doc.open();
-            Image img = Image.getInstance(getClass().getResource("/Img/logo.png"));
+            Image img = Image.getInstance(getClass().getResource("/Img/Sandrita.png"));
             //Fecha
             String informacion = "SELECT p.*, s.nombre FROM pedidos p INNER JOIN salas s ON p.id_sala = s.id WHERE p.id = ?";
             try {

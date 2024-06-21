@@ -216,6 +216,7 @@ public final class Sistema extends javax.swing.JFrame {
         txtIdPlato = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         TablePlatos = new javax.swing.JTable();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jLabel38 = new javax.swing.JLabel();
         labelLogo = new javax.swing.JLabel();
 
@@ -1279,7 +1280,7 @@ public final class Sistema extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1293,6 +1294,7 @@ public final class Sistema extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Platos", jPanel2);
+        jTabbedPane1.addTab("tab10", jTabbedPane2);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1080, 620));
 
@@ -1739,6 +1741,7 @@ public final class Sistema extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JTable tableFinalizar;
     private javax.swing.JTable tableMenu;
@@ -1934,7 +1937,7 @@ public final class Sistema extends javax.swing.JFrame {
 
     // platos
     private void ListarPlatos(JTable tabla) {
-        List<Platos> Listar = plaDao.Listar(txtBuscarPlato.getText(), fechaFormato);
+        List<Platos> Listar = plaDao.Listar(txtBuscarPlato.getText());
         modelo = (DefaultTableModel) tabla.getModel();
         Object[] ob = new Object[3];
         for (int i = 0; i < Listar.size(); i++) {
