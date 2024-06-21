@@ -19,7 +19,7 @@ public class DetallePedido {
         this.comentario = comentario;
         this.id_pedido = id_pedido;
     }
-
+    
     public int getId() {
         return id;
     }

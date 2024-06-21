@@ -13,6 +13,7 @@ public class SalasDao {
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
+    /*Controlador para Registrar Salas en la base de datos con sus metodos y consultas para la conexion e interaccion con la base de datos*/
     public boolean RegistrarSala(Salas sl){
         String sql = "INSERT INTO salas(nombre, mesas) VALUES (?,?)";
         try {

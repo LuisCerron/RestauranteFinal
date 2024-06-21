@@ -13,7 +13,7 @@ public class LoginDao {
     PreparedStatement ps;
     ResultSet rs;
     Conexion cn = new Conexion();
-    
+    /*Controlador para el Login con los metodos para hacer las consultas necesarias a la base de datos*/
     public login log(String correo, String pass){
         login l = new login();
         String sql = "SELECT * FROM usuarios WHERE correo = ? AND pass = ?";
