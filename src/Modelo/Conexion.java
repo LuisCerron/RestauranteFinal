@@ -10,7 +10,7 @@ public class Conexion {
     /*Codigo para la conexion para la base de datos */
     public Connection getConnection(){
         try {
-            String myBD = "jdbc:mysql://localhost:3309/restaurante";
+            String myBD = "jdbc:mysql://localhost:3306/restaurante";
             con = DriverManager.getConnection(myBD, "root", "");
             return con;
         } catch (SQLException e) {
