@@ -14,7 +14,7 @@ public class SalasDao {
     PreparedStatement ps;
     ResultSet rs;
     /*Controlador para Registrar Salas en la base de datos con sus metodos y consultas para la conexion e interaccion con la base de datos*/
-    public boolean RegistrarSala(Salas sl){
+    public boolean RegistrarSala(Salas sl) throws ClassNotFoundException{
         String sql = "INSERT INTO salas(nombre, mesas) VALUES (?,?)";
         try {
            con = cn.getConnection();
@@ -35,7 +35,7 @@ public class SalasDao {
         }
     }
     
-    public List Listar(){
+    public List Listar() throws ClassNotFoundException{
         List<Salas> Lista = new ArrayList();
         String sql = "SELECT * FROM salas";
         try {
@@ -56,7 +56,7 @@ public class SalasDao {
         return Lista;
     }
     
-    public boolean Eliminar(int id){
+    public boolean Eliminar(int id) throws ClassNotFoundException{
         String sql = "DELETE FROM salas WHERE id = ? ";
         try {
             con = cn.getConnection();
@@ -76,7 +76,7 @@ public class SalasDao {
         }
     }
     
-    public boolean Modificar(Salas sl){
+    public boolean Modificar(Salas sl) throws ClassNotFoundException{
         String sql = "UPDATE salas SET nombre=?, mesas=? WHERE id=?";
         try {
             con = cn.getConnection();

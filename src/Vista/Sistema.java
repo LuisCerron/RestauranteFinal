@@ -25,6 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,7 +60,7 @@ public final class Sistema extends javax.swing.JFrame {
     Date fechaActual = new Date();
     String fechaFormato = new SimpleDateFormat("yyyy-MM-dd").format(fechaActual);
 
-    public Sistema(login priv) {
+    public Sistema(login priv) throws ClassNotFoundException {
         initComponents();
         ImageIcon img = new ImageIcon(getClass().getResource("/Img/titulo.png"));
         Image igmEscalada = img.getImage().getScaledInstance(labelLogo.getWidth(), labelLogo.getHeight(), Image.SCALE_SMOOTH);
@@ -1361,27 +1363,43 @@ public final class Sistema extends javax.swing.JFrame {
     private void btnSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalaActionPerformed
         // TODO add your handling code here:
         LimpiarTable();
-        ListarSalas();
+        try {
+            ListarSalas();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_btnSalaActionPerformed
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(6);
-        ListarConfig();
+        try {
+            ListarConfig();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnConfigActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         // TODO add your handling code here:
         LimpiarTable();
-        ListarPedidos();
+        try {
+            ListarPedidos();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jTabbedPane1.setSelectedIndex(5);
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         // TODO add your handling code here:
         LimpiarTable();
-        ListarUsuarios();
+        try {
+            ListarUsuarios();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jTabbedPane1.setSelectedIndex(7);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
@@ -1407,7 +1425,11 @@ public final class Sistema extends javax.swing.JFrame {
         if (txtIdHistorialPedido.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Selecciona una fila");
         } else {
-            pedDao.pdfPedido(Integer.parseInt(txtIdHistorialPedido.getText()));
+            try {
+                pedDao.pdfPedido(Integer.parseInt(txtIdHistorialPedido.getText()));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
             txtIdHistorialPedido.setText("");
         }
     }//GEN-LAST:event_btnPdfPedidoActionPerformed
@@ -1417,8 +1439,16 @@ public final class Sistema extends javax.swing.JFrame {
         int fila = TablePedidos.rowAtPoint(evt.getPoint());
         int id_pedido = Integer.parseInt(TablePedidos.getValueAt(fila, 0).toString());
         LimpiarTable();
-        verPedido(id_pedido);
-        verPedidoDetalle(id_pedido);
+        try {
+            verPedido(id_pedido);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            verPedidoDetalle(id_pedido);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jTabbedPane1.setSelectedIndex(4);
         btnFinalizar.setEnabled(false);
         txtIdHistorialPedido.setText(""+id_pedido);
@@ -1443,11 +1473,19 @@ public final class Sistema extends javax.swing.JFrame {
         } else {
             sl.setNombre(txtNombreSala.getText());
             sl.setMesas(Integer.parseInt(txtMesas.getText()));
-            slDao.RegistrarSala(sl);
+            try {
+                slDao.RegistrarSala(sl);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JOptionPane.showMessageDialog(null, "Sala Registrado");
             LimpiarSala();
             LimpiarTable();
-            ListarSalas();
+            try {
+                ListarSalas();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnRegistrarSalaActionPerformed
 
@@ -1459,11 +1497,19 @@ public final class Sistema extends javax.swing.JFrame {
             if (!"".equals(txtNombreSala.getText())) {
                 sl.setNombre(txtNombreSala.getText());
                 sl.setId(Integer.parseInt(txtIdSala.getText()));
-                slDao.Modificar(sl);
+                try {
+                    slDao.Modificar(sl);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 JOptionPane.showMessageDialog(null, "Sala Modificado");
                 LimpiarSala();
                 LimpiarTable();
-                ListarSalas();
+                try {
+                    ListarSalas();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_btnActualizarSalaActionPerformed
@@ -1479,10 +1525,18 @@ public final class Sistema extends javax.swing.JFrame {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
             if (pregunta == 0) {
                 int id = Integer.parseInt(txtIdSala.getText());
-                slDao.Eliminar(id);
+                try {
+                    slDao.Eliminar(id);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 LimpiarSala();
                 LimpiarTable();
-                ListarSalas();
+                try {
+                    ListarSalas();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
@@ -1506,9 +1560,17 @@ public final class Sistema extends javax.swing.JFrame {
             lg.setCorreo(correo);
             lg.setPass(pass);
             lg.setRol(rol);
-            lgDao.Registrar(lg);
+            try {
+                lgDao.Registrar(lg);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JOptionPane.showMessageDialog(null, "Usuario Registrado");
-            ListarUsuarios();
+            try {
+                ListarUsuarios();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }//GEN-LAST:event_btnIniciarActionPerformed
@@ -1516,12 +1578,20 @@ public final class Sistema extends javax.swing.JFrame {
     private void labelLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLogoMouseClicked
         jTabbedPane1.setSelectedIndex(0);
         PanelSalas.removeAll();
-        panelSalas();
+        try {
+            panelSalas();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_labelLogoMouseClicked
 
     private void txtBuscarPlatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarPlatoKeyReleased
         LimpiarTable();
-        ListarPlatos(tblTemPlatos);
+        try {
+            ListarPlatos(tblTemPlatos);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtBuscarPlatoKeyReleased
 
     private void btnAddPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPlatoActionPerformed
@@ -1567,8 +1637,16 @@ public final class Sistema extends javax.swing.JFrame {
 
     private void btnGenerarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPedidoActionPerformed
         if (tableMenu.getRowCount() > 0) {
-            RegistrarPedido();
-            detallePedido();
+            try {
+                RegistrarPedido();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                detallePedido();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
             LimpiarTableMenu();
             JOptionPane.showMessageDialog(null, "PEDIDO REGISTRADO");
             jTabbedPane1.setSelectedIndex(0);
@@ -1603,8 +1681,12 @@ public final class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de finalizar");
         if (pregunta == 0) {
-            if (pedDao.actualizarEstado(Integer.parseInt(txtIdPedido.getText()))) {
-                pedDao.pdfPedido(Integer.parseInt(txtIdPedido.getText()));
+            try {
+                if (pedDao.actualizarEstado(Integer.parseInt(txtIdPedido.getText()))) {
+                    pedDao.pdfPedido(Integer.parseInt(txtIdPedido.getText()));
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
@@ -1612,7 +1694,11 @@ public final class Sistema extends javax.swing.JFrame {
     private void btnPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatosActionPerformed
         jTabbedPane1.setSelectedIndex(8);
         LimpiarTable();
-        ListarPlatos(TablePlatos);
+        try {
+            ListarPlatos(TablePlatos);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPlatosActionPerformed
 
     private void txtPrecioPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioPlatoKeyTyped
@@ -1626,11 +1712,15 @@ public final class Sistema extends javax.swing.JFrame {
             pla.setNombre(txtNombrePlato.getText());
             pla.setPrecio(Double.parseDouble(txtPrecioPlato.getText()));
             pla.setFecha(fechaFormato);
-            if (plaDao.Registrar(pla)) {
-                JOptionPane.showMessageDialog(null, "Plato Registrado");
-                LimpiarTable();
-                ListarPlatos(TablePlatos);
-                LimpiarPlatos();
+            try {
+                if (plaDao.Registrar(pla)) {
+                    JOptionPane.showMessageDialog(null, "Plato Registrado");
+                    LimpiarTable();
+                    ListarPlatos(TablePlatos);
+                    LimpiarPlatos();
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
@@ -1650,7 +1740,11 @@ public final class Sistema extends javax.swing.JFrame {
                 if (plaDao.Modificar(pla)) {
                     JOptionPane.showMessageDialog(null, "Plato Modificado");
                     LimpiarTable();
-                    ListarPlatos(TablePlatos);
+                    try {
+                        ListarPlatos(TablePlatos);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     LimpiarPlatos();
                 }
 
@@ -1667,7 +1761,11 @@ public final class Sistema extends javax.swing.JFrame {
                 plaDao.Eliminar(id);
                 LimpiarTable();
                 LimpiarPlatos();
-                ListarPlatos(TablePlatos);
+                try {
+                    ListarPlatos(TablePlatos);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una fila");
@@ -1841,7 +1939,7 @@ public final class Sistema extends javax.swing.JFrame {
         }
     }
 
-    public void ListarConfig() {
+    public void ListarConfig() throws ClassNotFoundException {
         conf = lgDao.datosEmpresa();
         txtIdConfig.setText("" + conf.getId());
         txtRucConfig.setText("" + conf.getRuc());
@@ -1851,9 +1949,11 @@ public final class Sistema extends javax.swing.JFrame {
         txtMensaje.setText("" + conf.getMensaje());
     }
 
-    private void ListarPedidos() {
-        Tables color = new Tables();
+    private void ListarPedidos() throws ClassNotFoundException {
+        Tables color = new Tables(); 
+        try{
         List<Pedidos> Listar = pedDao.listarPedidos();
+        
         modelo = (DefaultTableModel) TablePedidos.getModel();
         Object[] ob = new Object[7];
         for (int i = 0; i < Listar.size(); i++) {
@@ -1866,6 +1966,9 @@ public final class Sistema extends javax.swing.JFrame {
             ob[6] = Listar.get(i).getEstado();
             modelo.addRow(ob);
         }
+        } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
         colorHeader(TablePedidos);
         TablePedidos.setDefaultRenderer(Object.class, color);
     }
@@ -1877,7 +1980,7 @@ public final class Sistema extends javax.swing.JFrame {
         }
     }
 
-    private void ListarUsuarios() {
+    private void ListarUsuarios() throws ClassNotFoundException {
         List<login> Listar = lgDao.ListarUsuarios();
         modelo = (DefaultTableModel) TableUsuarios.getModel();
         Object[] ob = new Object[4];
@@ -1891,8 +1994,10 @@ public final class Sistema extends javax.swing.JFrame {
         colorHeader(TableUsuarios);
     }
 
-    private void ListarSalas() {
+    private void ListarSalas() throws ClassNotFoundException{
+        try{
         List<Salas> Listar = slDao.Listar();
+        
         modelo = (DefaultTableModel) tableSala.getModel();
         Object[] ob = new Object[3];
         for (int i = 0; i < Listar.size(); i++) {
@@ -1902,7 +2007,9 @@ public final class Sistema extends javax.swing.JFrame {
             modelo.addRow(ob);
         }
         colorHeader(tableSala);
-
+} catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }
 
     private void colorHeader(JTable tabla) {
@@ -1925,7 +2032,7 @@ public final class Sistema extends javax.swing.JFrame {
         txtPrecioPlato.setText("");
     }
 
-    private void panelSalas() {
+    private void panelSalas() throws ClassNotFoundException{
         List<Salas> Listar = slDao.Listar();
         for (int i = 0; i < Listar.size(); i++) {
             int id = Listar.get(i).getId();
@@ -1939,14 +2046,18 @@ public final class Sistema extends javax.swing.JFrame {
             boton.addActionListener((ActionEvent e) -> {
                 LimpiarTable();
                 PanelMesas.removeAll();
-                panelMesas(id, cantidad);
+                try {
+                    panelMesas(id, cantidad);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 jTabbedPane1.setSelectedIndex(2);
             });
         }
     }
 
     //crear mesas
-    private void panelMesas(int id_sala, int cant) {
+    private void panelMesas(int id_sala, int cant) throws ClassNotFoundException{
         for (int i = 1; i <= cant; i++) {
             int num_mesa = i;
             //verificar estado
@@ -1966,14 +2077,26 @@ public final class Sistema extends javax.swing.JFrame {
             boton.addActionListener((ActionEvent e) -> {
                 if (verificar > 0) {
                     LimpiarTable();
-                    verPedido(verificar);
-                    verPedidoDetalle(verificar);
+                    try {
+                        verPedido(verificar);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        verPedidoDetalle(verificar);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     btnFinalizar.setEnabled(true);
                     btnPdfPedido.setEnabled(false);
                     jTabbedPane1.setSelectedIndex(4);
                 } else {
                     LimpiarTable();
-                    ListarPlatos(tblTemPlatos);
+                    try {
+                        ListarPlatos(tblTemPlatos);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     jTabbedPane1.setSelectedIndex(3);
                     txtTempIdSala.setText("" + id_sala);
                     txtTempNumMesa.setText("" + num_mesa);
@@ -1983,7 +2106,7 @@ public final class Sistema extends javax.swing.JFrame {
     }
 
     // platos
-    private void ListarPlatos(JTable tabla) {
+    private void ListarPlatos(JTable tabla) throws ClassNotFoundException {
         List<Platos> Listar = plaDao.Listar(txtBuscarPlato.getText());
         modelo = (DefaultTableModel) tabla.getModel();
         Object[] ob = new Object[3];
@@ -1997,7 +2120,7 @@ public final class Sistema extends javax.swing.JFrame {
     }
 
     //registrar pedido
-    private void RegistrarPedido() {
+    private void RegistrarPedido() throws ClassNotFoundException {
         int id_sala = Integer.parseInt(txtTempIdSala.getText());
         int num_mesa = Integer.parseInt(txtTempNumMesa.getText());
         double monto = Totalpagar;
@@ -2008,7 +2131,7 @@ public final class Sistema extends javax.swing.JFrame {
         pedDao.RegistrarPedido(ped);
     }
 
-    private void detallePedido() {
+    private void detallePedido() throws ClassNotFoundException{
         int id = pedDao.IdPedido();
         for (int i = 0; i < tableMenu.getRowCount(); i++) {
             String nombre = tableMenu.getValueAt(i, 1).toString();
@@ -2024,7 +2147,7 @@ public final class Sistema extends javax.swing.JFrame {
         }
     }
 
-    public void verPedidoDetalle(int id_pedido) {
+    public void verPedidoDetalle(int id_pedido) throws ClassNotFoundException{
         List<DetallePedido> Listar = pedDao.verPedidoDetalle(id_pedido);
         modelo = (DefaultTableModel) tableFinalizar.getModel();
         Object[] ob = new Object[6];
@@ -2040,7 +2163,7 @@ public final class Sistema extends javax.swing.JFrame {
         colorHeader(tableFinalizar);
     }
 
-    public void verPedido(int id_pedido) {
+    public void verPedido(int id_pedido) throws ClassNotFoundException{
         ped = pedDao.verPedido(id_pedido);
         totalFinalizar.setText("" + ped.getTotal());
         txtFechaHora.setText("" + ped.getFecha());

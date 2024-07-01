@@ -14,7 +14,7 @@ public class LoginDao {
     ResultSet rs;
     Conexion cn = new Conexion();
     /*Controlador para el Login con los metodos para hacer las consultas necesarias a la base de datos*/
-    public login log(String correo, String pass){
+    public login log(String correo, String pass) throws ClassNotFoundException{
         login l = new login();
         String sql = "SELECT * FROM usuarios WHERE correo = ? AND pass = ?";
         try {
@@ -37,7 +37,7 @@ public class LoginDao {
         return l;
     }
     
-    public boolean Registrar(login reg){
+    public boolean Registrar(login reg) throws ClassNotFoundException{
         String sql = "INSERT INTO usuarios (nombre, correo, pass, rol) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
@@ -54,7 +54,7 @@ public class LoginDao {
         }
     }
     
-    public List ListarUsuarios(){
+    public List ListarUsuarios() throws ClassNotFoundException{
        List<login> Lista = new ArrayList();
        String sql = "SELECT * FROM usuarios";
        try {
@@ -99,7 +99,7 @@ public class LoginDao {
         }
     }
     
-    public Config datosEmpresa(){
+    public Config datosEmpresa() throws ClassNotFoundException{
         Config conf = new Config();
         String sql = "SELECT * FROM config";
         try {

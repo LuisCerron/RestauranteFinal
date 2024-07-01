@@ -63,19 +63,6 @@ CREATE TABLE `detalle_pedidos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `detalle_pedidos`
---
-
-LOCK TABLES `detalle_pedidos` WRITE;
-/*!40000 ALTER TABLE `detalle_pedidos` DISABLE KEYS */;
-INSERT INTO `detalle_pedidos` VALUES (1,'CHAUFA',20.00,1,'',1),(2,'ARROZ CON POLLO',10.00,5,'ARTO MAYONESA',1),(3,'GASEOSA COCA COLA 1.5 LITROS',8.00,1,'',1),(4,'ARROZ CON POLLO',10.00,1,'',2),(5,'CHAUFA',20.00,1,'',2),(6,'GASEOSA COCA COLA 1.5 LITROS',8.00,1,'',3),(7,'CHAUFA',20.00,1,'',3),(8,'ARROZ CON POLLO',10.00,2,'',4);
-/*!40000 ALTER TABLE `detalle_pedidos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pedidos`
---
 
 DROP TABLE IF EXISTS `pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -94,19 +81,7 @@ CREATE TABLE `pedidos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `pedidos`
---
 
-LOCK TABLES `pedidos` WRITE;
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,1,2,'2024-05-18 00:31:52',78.00,'FINALIZADO','admin'),(2,1,8,'2024-05-18 00:32:20',30.00,'PENDIENTE','admin'),(3,1,9,'2024-05-18 00:32:29',28.00,'PENDIENTE','admin'),(4,1,10,'2024-05-18 01:04:47',20.00,'PENDIENTE','admin');
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `platos`
---
 
 DROP TABLE IF EXISTS `platos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

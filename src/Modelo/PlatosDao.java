@@ -14,7 +14,7 @@ public class PlatosDao {
     PreparedStatement ps;
     ResultSet rs;
 
-    public boolean Registrar(Platos pla) {
+    public boolean Registrar(Platos pla) throws ClassNotFoundException {
         String sql = "INSERT INTO platos (nombre, precio, fecha) VALUES (?,?,?)";
         try {
             con = cn.getConnection();
@@ -36,7 +36,7 @@ public class PlatosDao {
         }
     }
 
-    public List Listar(String valor) {
+    public List Listar(String valor) throws ClassNotFoundException {
         List<Platos> Lista = new ArrayList();
         String sql = "SELECT * FROM platos";
         String consulta = "SELECT * FROM platos WHERE nombre LIKE '%"+valor+"%'" ;

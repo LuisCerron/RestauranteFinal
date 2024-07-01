@@ -6,6 +6,8 @@ import Modelo.login;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -36,14 +38,19 @@ public class FrmLogin extends javax.swing.JFrame {
             if (contador == 100) {
                 tiempo.stop();
                 if (barra.getValue() == 100) {
-                    Sistema sis = new Sistema(lg);
+                    Sistema sis = null;
+                    try {
+                        sis = new Sistema(lg);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     sis.setVisible(true);
                     dispose();
                 }
             }
         }
     }
-    public void validar(){
+    public void validar() throws ClassNotFoundException{
         String correo = txtCorreo.getText();
         String pass = String.valueOf(txtPass.getPassword());
         if (!"".equals(correo) || !"".equals(pass)) {
@@ -167,7 +174,11 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-      validar();
+        try {
+            validar();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed

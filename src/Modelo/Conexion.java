@@ -3,18 +3,20 @@ package Modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class Conexion {
 
     Connection con;
     /*Codigo para la conexion para la base de datos */
-    public Connection getConnection(){
+    public Connection getConnection() throws ClassNotFoundException{
         try {
-            String myBD = "jdbc:mysql://localhost:3306/restaurante";
-            con = DriverManager.getConnection(myBD, "root", "");
+            Class.forName("org.h2.Driver");
+            String myBD = "jdbc:h2:file:./database/restaurante";
+            con = DriverManager.getConnection(myBD, "admin", "");
             return con;
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            JOptionPane.showMessageDialog(null,(e.toString()));
         }
         return null;
     }

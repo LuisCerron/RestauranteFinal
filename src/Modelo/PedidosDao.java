@@ -33,7 +33,7 @@ public class PedidosDao {
     ResultSet rs;
     int r;
     
-    public int IdPedido(){
+    public int IdPedido() throws ClassNotFoundException{
         int id = 0;
         String sql = "SELECT MAX(id) FROM pedidos";
         try {
@@ -49,7 +49,7 @@ public class PedidosDao {
         return id;
     }
     
-    public int verificarStado(int mesa, int id_sala){
+    public int verificarStado(int mesa, int id_sala) throws ClassNotFoundException{
         int id_pedido = 0;
         String sql = "SELECT id FROM pedidos WHERE num_mesa=? AND id_sala=? AND estado = ?";
         try {
@@ -68,7 +68,7 @@ public class PedidosDao {
         return id_pedido;
     }
     
-    public int RegistrarPedido(Pedidos ped){
+    public int RegistrarPedido(Pedidos ped) throws ClassNotFoundException{
         String sql = "INSERT INTO pedidos (id_sala, num_mesa, total, usuario) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
@@ -90,7 +90,7 @@ public class PedidosDao {
         return r;
     }
     
-    public int RegistrarDetalle(DetallePedido det){
+    public int RegistrarDetalle(DetallePedido det) throws ClassNotFoundException{
        String sql = "INSERT INTO detalle_pedidos (nombre, precio, cantidad, comentario, id_pedido) VALUES (?,?,?,?,?)";
         try {
             con = cn.getConnection();
@@ -107,7 +107,7 @@ public class PedidosDao {
         return r;
     }
     
-    public List verPedidoDetalle(int id_pedido){
+    public List verPedidoDetalle(int id_pedido) throws ClassNotFoundException{
        List<DetallePedido> Lista = new ArrayList();
        String sql = "SELECT d.* FROM pedidos p INNER JOIN detalle_pedidos d ON p.id = d.id_pedido WHERE p.id = ?";
        try {
@@ -130,7 +130,7 @@ public class PedidosDao {
        return Lista;
    }
     
-    public Pedidos verPedido(int id_pedido){
+    public Pedidos verPedido(int id_pedido) throws ClassNotFoundException{
         Pedidos ped = new Pedidos();
        String sql = "SELECT p.*, s.nombre FROM pedidos p INNER JOIN salas s ON p.id_sala = s.id WHERE p.id = ?";
        try {
@@ -152,7 +152,7 @@ public class PedidosDao {
        return ped;
    }
     
-    public List finalizarPedido(int id_pedido){
+    public List finalizarPedido(int id_pedido) throws ClassNotFoundException{
        List<DetallePedido> Lista = new ArrayList();
        String sql = "SELECT d.* FROM pedidos p INNER JOIN detalle_pedidos d ON p.id = d.id_pedido WHERE p.id = ?";
        try {
@@ -175,7 +175,7 @@ public class PedidosDao {
        return Lista;
    }
     
-    public void pdfPedido(int id_pedido) {
+    public void pdfPedido(int id_pedido) throws ClassNotFoundException {
         String fechaPedido = null, usuario = null, total = null,
                 sala = null, num_mesa = null;
         try {
@@ -314,7 +314,7 @@ public class PedidosDao {
         }
     }
     
-    public boolean actualizarEstado (int id_pedido){
+    public boolean actualizarEstado (int id_pedido) throws ClassNotFoundException{
         String sql = "UPDATE pedidos SET estado = ? WHERE id = ?";
         try {
             con = cn.getConnection();
@@ -329,7 +329,7 @@ public class PedidosDao {
         }
     }
     
-    public List listarPedidos(){
+    public List listarPedidos() throws ClassNotFoundException{
        List<Pedidos> Lista = new ArrayList();
        String sql = "SELECT p.*, s.nombre FROM pedidos p INNER JOIN salas s ON p.id_sala = s.id ORDER BY p.fecha DESC";
        try {
