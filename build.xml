@@ -69,7 +69,7 @@
     properties which you can use, check the target you are overriding in the
     nbproject/build-impl.xml file. 
 
-    -->
+    
     <target name="package-for-store" depends="jar">
         <property name="store.jar.name" value="RestauranteSandrita"/>
         <property name="store.dir" value="store"/>
@@ -90,4 +90,5 @@
          </zip>
          <delete file="${store.dir}/temp_final.jar"/>
     </target>
+        -->
 </project>
